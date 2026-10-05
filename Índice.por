@@ -1,12 +1,32 @@
 programa {
   inclua biblioteca Graficos --> graficos
   inclua biblioteca Util --> util
+  const inteiro LARGURA = 800
+  const inteiro ALTURA = 500
 
     funcao inicio (){
       // Estas funcionalidades da biblioteca de gráficos são para criar a tela do jogo.
       graficos.iniciar_modo_grafico(verdadeiro)
       graficos.definir_dimensoes_janela(800,500)
       graficos.definir_titulo_janela(" Batalha Pokémon RPG")
+      /**
+       * Tipos de variáveis:
+       * Inteiro = tipo responsável por vonter números inteiros, sem decimal, exemplo: idade = 18.
+       * Real = tipo responsável por conter números com casas decimais, exemplo: 5.99.
+       * Caractere = tipo responsável por conter apenas um caractere, exemplo: sexo = 'M'.
+       * Cadeia = tipo responsável por conter texto, exemplo: nome =  "Dafne".
+       * Logico = tipo responsável por conter valores lógicos, exemplo: cadastro = falso.
+       * Vazio = tipo responsável para executar funções que não retornam valor, exemplo: função escreva.
+       */
+
+      cadeia nome_meu_pokemon = "Pikachu"
+      inteiro hp_meu_pokemon = 100
+      inteiro max_hp_meu_pokemon = 100
+
+      //Informações do pokémon inimigo.
+      cadeia nome_pokemon_inimigo = "Gengar"
+      inteiro hp_pokemon_inimigo = 120
+      inteiro max_hp_pokemon_inimigo = 120
 
       // Desenho do céu da tela do jogo.
       graficos.definir_cor(graficos.criar_cor(150, 216, 250))
