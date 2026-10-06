@@ -14,7 +14,7 @@ programa {
        * 
        * Inteiro = tipo responsável por vonter números inteiros, sem decimal, exemplo: idade = 18.
        * Real = tipo responsável por conter números com casas decimais, exemplo: 5.99.
-       * Caractere = tipo responsável por conter apenas um caractere, exemplo: sexo = 'M'.
+       * Caractere = tipo responsável por conter apenas um caractere, exemplo: sexo = 'F'.
        * Cadeia = tipo responsável por conter texto, exemplo: nome =  "Dafne".
        * Logico = tipo responsável por conter valores lógicos, exemplo: cadastro = falso.
        * Vazio = tipo responsável para executar funções que não retornam valor, exemplo: função escreva.
