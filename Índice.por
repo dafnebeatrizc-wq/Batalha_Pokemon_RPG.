@@ -23,6 +23,7 @@ programa {
       cadeia nome_meu_pokemon = "Pikachu"
       inteiro hp_meu_pokemon = 100
       inteiro max_hp_meu_pokemon = 100
+      inteiro pocoes = 2
 
       //Informações do pokémon inimigo.
       cadeia nome_pokemon_inimigo = "Gengar"
@@ -74,7 +75,28 @@ programa {
       }
 
       escreva(" >> ", nome_meu_pokemon, "causou ", dano, "de dano!\n")
-      escreva(" >> HP restante de ", nome_pokemon_inimigo, ": ", hp_pokemon_inimigo, "/", max_hp_pokemon_inimigo,"\n")
+
+      /**
+       * E - Operador lógico E só é verdadeiro se todas as condições forem verdadeiras.
+       * OU - Só é verdadeiro desde que pelo menos uma condiçãos seja verdadeira.
+       * NÂO - Ele inverte o valor lógico, se for verdadeiro, passa a ser falso e virse-versa.
+       */
+
+      logico vitoria = (hp_pokemon_inimigo == 0 ) e (hp_pokemon_inimigo <= max_hp_pokemon_inimigo)
+     
+     //Estrutura condiciona simples aceita as função do SE e SENAO.
+     se(vitoria){
+      desenhar_cena(
+        nome_meu_pokemon,
+        hp_meu_pokemon,
+        max_hp_meu_pokemon,
+        nome_pokemon_inimigo,
+        hp_pokemon_inimigo,
+        max_hp_pokemon_inimigo,
+        nome_pokemon_inimigo + " desmaiou! Você venceu!"
+      )
+     } senao {
+      logico posso_continuar = (hp_pokemon_inimigo > 0) ou (pocoes > 0)
       desenhar_cena(
         nome_meu_pokemon,
         hp_meu_pokemon,
@@ -83,7 +105,9 @@ programa {
         hp_pokemon_inimigo,
         max_hp_pokemon_inimigo,
         nome_meu_pokemon + " causou " + dano + " de dano!"
-      )
+        )
+        escreva(" >> ", nome_pokemon_inimigo, " ainda resiste com ", hp_pokemon_inimigo, "HP. Posso continuar? ", posso_continuar, "\n")
+     }
 
     }
 
@@ -93,7 +117,7 @@ programa {
     inteiro p_max_hp,
     cadeia i_nome,
     inteiro i_hp,
-    inteiro i_max_hap,
+    inteiro i_max_hp,
     cadeia mensagem
     ){
 
@@ -131,7 +155,7 @@ programa {
       graficos.desenhar_retangulo(450, 310,300,75, falso, verdadeiro)
       graficos.definir_cor(graficos.COR_PRETO)
       graficos.desenhar_retangulo(450, 310,300,75, falso, falso)
-      graficos.desenhar_texto(60, 55, i_hp + " HP: " + i_hp + "/" + i_max_hap)
+      graficos.desenhar_texto(60, 55, i_nome + " HP: " + i_hp + "/" + i_max_hp)
       graficos.desenhar_texto(480, 372, p_nome + " HP: " + p_hp + "/" +p_max_hp)
 
       graficos.definir_cor(graficos.criar_cor(250,250,235))
