@@ -11,6 +11,7 @@ programa {
       graficos.definir_titulo_janela(" Batalha Pokémon RPG")
       /**
        * Tipos de variáveis:
+       * 
        * Inteiro = tipo responsável por vonter números inteiros, sem decimal, exemplo: idade = 18.
        * Real = tipo responsável por conter números com casas decimais, exemplo: 5.99.
        * Caractere = tipo responsável por conter apenas um caractere, exemplo: sexo = 'M'.
@@ -28,6 +29,21 @@ programa {
       inteiro hp_pokemon_inimigo = 120
       inteiro max_hp_pokemon_inimigo = 120
 
+      // Chama a função desenhar_cena para mostrar ps gráficos do jogo.
+      desenhar_cena(
+        nome_meu_pokemon,
+        hp_meu_pokemon,
+        max_hp_meu_pokemon,
+        nome_pokemon_inimigo,
+        hp_pokemon_inimigo,
+        max_hp_pokemon_inimigo,
+        "Um " + nome_pokemon_inimigo + " selvagem apareceu!" 
+      )
+
+      //ENTRADA: O jogo aguarda que o jogador confirme antes de iniciar.
+      cadeia continuar
+      escreva("Pressione ENTER para atacar...")
+      leia(continuar)                         
       /*
       * Operadores arítmetricos
       *
@@ -38,12 +54,48 @@ programa {
       * Módulo (%) = Calcula o resto de uma divisão, exemplo: divisão = 3 % 2.
       */
 
-      inteiro dano = util.sorteia(22, 35)
-      hp_pokemon_inimigo = hp_pokemon_inimigo - dano  
-       //Pode ser também "hp_pokemon_inimigo += - dano" 
-      escreva("=== FICHA DA BATALHA === \n")
-      escreva(nome_meu_pokemon, " -HP: ", hp_meu_pokemon, "/", max_hp_meu_pokemon, "\n")
-      escreva(nome_pokemon_inimigo, " -HP: ", hp_pokemon_inimigo, "/", max_hp_pokemon_inimigo,"(sofreu)",dano, "(de dano)", "\n")
+      inteiro dano = util.sorteia(22, 90)
+      hp_pokemon_inimigo = hp_pokemon_inimigo - dano  //OBS: Pode ser também escrito como:  "hp_pokemon_inimigo += - dano" 
+     /**
+      * Operadores relacionais:
+
+      * > sinal de maior que, exemplo: valor = 3 > 2.
+      * < sinal de menor que, exemplo: valor = 3 < 2.
+      * >= sinal de maior ou  igual, exemplo: valor = 4 >= 5.
+      * <= sinal de menor ou igual, exemplo: valor = 3 <= 5.
+      * == sinal de igual, exemplo: valor = 2 == 2.
+      * != sinal de diferente, exemplo: valor = 3 != 2.
+
+      * Os operadores relacionais retornam valores verdadeiro ou falso.
+      */
+      
+      se(hp_pokemon_inimigo < 0 ){
+        hp_pokemon_inimigo = 0
+      }
+
+      escreva(" >> ", nome_meu_pokemon, "causou ", dano, "de dano!\n")
+      escreva(" >> HP restante de ", nome_pokemon_inimigo, ": ", hp_pokemon_inimigo, "/", max_hp_pokemon_inimigo,"\n")
+      desenhar_cena(
+        nome_meu_pokemon,
+        hp_meu_pokemon,
+        max_hp_meu_pokemon,
+        nome_pokemon_inimigo,
+        hp_pokemon_inimigo,
+        max_hp_pokemon_inimigo,
+        nome_meu_pokemon + " causou " + dano + " de dano!"
+      )
+
+    }
+
+    funcao vazio desenhar_cena(
+    cadeia p_nome,
+    inteiro p_hp,
+    inteiro p_max_hp,
+    cadeia i_nome,
+    inteiro i_hp,
+    inteiro i_max_hap,
+    cadeia mensagem
+    ){
 
       // Desenho do céu da tela do jogo.
       graficos.definir_cor(graficos.criar_cor(150, 216, 250))
@@ -70,9 +122,23 @@ programa {
       graficos.desenhar_retangulo(180, 280, 110, 100, falso, verdadeiro)
 
       //Textos das informações dos pokémons.
+      graficos.definir_cor(graficos.criar_cor(250,250, 235))
+      graficos.desenhar_retangulo(50, 40, 300, 75, falso, verdadeiro)
       graficos.definir_cor(graficos.COR_PRETO)
-      graficos.desenhar_texto(60, 55, nome_pokemon_inimigo + " HP: " + hp_pokemon_inimigo + "/" + max_hp_pokemon_inimigo)
-      graficos.desenhar_texto(480, 372, nome_meu_pokemon + " HP: " + hp_meu_pokemon + "/" + max_hp_meu_pokemon)
+      graficos.desenhar_retangulo(50, 40, 300, 75, falso, falso)
+
+      graficos.definir_cor(graficos.criar_cor(250,250, 235))
+      graficos.desenhar_retangulo(450, 310,300,75, falso, verdadeiro)
+      graficos.definir_cor(graficos.COR_PRETO)
+      graficos.desenhar_retangulo(450, 310,300,75, falso, falso)
+      graficos.desenhar_texto(60, 55, i_hp + " HP: " + i_hp + "/" + i_max_hap)
+      graficos.desenhar_texto(480, 372, p_nome + " HP: " + p_hp + "/" +p_max_hp)
+
+      graficos.definir_cor(graficos.criar_cor(250,250,235))
+      graficos.desenhar_retangulo(20,420,760,65,falso,verdadeiro)
+      graficos.definir_cor(graficos.COR_PRETO)
+      graficos.desenhar_retangulo(20,420,760,65,falso,falso)
+      graficos.desenhar_texto(40,445,mensagem)
       
      //Esta funçaõ é responsável por mostrar a tela de jogo
       graficos.renderizar()
